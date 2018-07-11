@@ -85,6 +85,32 @@ if (choice == undefined){
     money = 0;
 } else if (choice != "run" && randomPerson == "Felipe"){
     console.log("The protesters attack you...");
+    if (item != "jacket")
+        console.log("...but Felipe, a fellow android shows up to help you escape them");
+    else{
+        console.log("...and Felipe, a fellow android, who would normally help doesn't recognize you with the jacket");
+        health -= 50;
+    }
+} else if (choice == "run" && randomPerson == "John"){
+    console.log("You run, but John, a human officer with an attitude and a heart of gold, finds you...");
+    if (item == "hammer" || "jacket"){
+        console.log("...and holds you for questioning for suspicious activity");
+        money = 0;
+    } else {
+        console.log("...and seeing you have no ill intent, John protects you from the protestors and lets you go.");
+    }
+} else {
+    if (item == "paint"){
+        console.log("You boldy protest by painting a pro-android message...");
+        let message = process.argv[5]
+        if (message != undefined){
+            console.log(message.toUpperCase());
+        } else {
+            console.log("WE ARE ALIVE");
+        }
+    } else {
+        console.log("Nothing interesting happens, but at least you got that " + item + ".")
+    }
 }
 // Else if "choice" is NOT "run" AND "randomPerson" is "Felipe" 
 //      console.log("The protesters attack you...");
@@ -123,21 +149,27 @@ if (choice == undefined){
 // that scope are inaccessible to the world outside of those brackets
 
 // Create a variable "score" and set it equal to 0
-
+let score = 0
 // Add "money" and "health" to "score"
-
+score = money + health
 // If "choice" is defined, add 10 points to "score"
 // NOTE: Recall where "choice" was initialized (created). What scope was it in?
 // The global scope! So all of your code has access to it.
-
+if (choice != undefined){
+    score += 10;
+}
 // if "message" is defined, add 10 points to "score"
 // NOTE: Recall where "message" was initialized/created. 
 // It's within curly brackets! 
 // Alter your code so that "message" is initialized  in the global space 
 // right alongside "choice"
-
+// if (message != undefined){
+//     score += 10
+// }
 //////////////////////
 // STORY CONCLUSION //
 //////////////////////
 // console.log("The end");
 // console.log(`Score: ${score}`);
+console.log("The end");
+console.log("Score: " + score);
